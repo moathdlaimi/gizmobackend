@@ -1,0 +1,47 @@
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "POST, GET, OPTIONS, DELETE, PUT"
+Header always set Access-Control-Allow-Headers "Content-Type"
+
+
+RewriteEngine On
+
+
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^tools$ controllers/tools.php?action=index
+
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^tools/user$ controllers/tools.php?action=show
+
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^tools/([0-9]+)$ controllers/tools.php?action=show&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^POST$
+RewriteRule ^tools$ controllers/tools.php?action=post
+
+RewriteCond %{REQUEST_METHOD} ^PUT$
+RewriteRule ^tools/([0-9]+)$ controllers/tools.php?action=update&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^DELETE$
+RewriteRule ^tools/([0-9]+)$ controllers/tools.php?action=delete&id=$1
+
+RewriteCond %{REQUEST_METHOD} ^OPTIONS$
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# ======= Users =======
+
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^users$ controllers/users.php?action=index
+
+RewriteCond %{REQUEST_METHOD} ^POST$
+RewriteRule ^users$ controllers/users.php?action=post
+
+# ======= Sessions =======
+
+RewriteCond %{REQUEST_METHOD} ^GET$
+RewriteRule ^sessions$ controllers/sessions.php?action=index
+
+RewriteCond %{REQUEST_METHOD} ^POST$
+RewriteRule ^sessions$ controllers/sessions.php?action=post
+
+RewriteCond %{REQUEST_METHOD} ^DELETE$
+RewriteRule ^sessions$ controllers/sessions.php?action=delete
